@@ -39,6 +39,9 @@ class App extends Component {
 	
 	handleSubmit(data){
 	   var value = parseInt(this.state.progressBarData[this.state.selectedProgressBar],10)+parseInt(data,10);
+	   if(value<0){
+	     value=0;
+	   }
 	   var array=this.state.progressBarData;
 	   array[this.state.selectedProgressBar]=value;
 	   this.setState({'progressBarData':array});
