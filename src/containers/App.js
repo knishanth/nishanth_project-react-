@@ -27,7 +27,7 @@ class App extends Component {
     }
 	
 	componentWillReceiveProps(nextProps){
-	  if(nextProps.currentUserData.userData.buttons && nextProps.currentUserData.userData.buttons.length){
+	  if((!nextProps.currentUserData.isFetching)&& nextProps.currentUserData.userData.buttons && nextProps.currentUserData.userData.buttons.length){
 	     this.setState({
 		   'buttonData':nextProps.currentUserData.userData.buttons,
 		   'progressBarData':nextProps.currentUserData.userData.bars,
@@ -65,7 +65,7 @@ class App extends Component {
 								    <ProgressBar key={index} data={data} limit={this.state.limit}/>
 								)}
 	                        </div>
-							<div class="container" id="input-selectors" >
+							<div className="container" id="input-selectors" >
 							   <select id="drop-down" onChange={this.handleChange}>
 							   { this.state.progressBarData.map((data,index)=>
 		                          <option value={index}>#progress{index+1}</option>
