@@ -9,20 +9,11 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('actions', () => {
-    it('Should create a user to fetch a repo with', () => {
-        const user = 'aderaaij';
-        const expectedAction = {
-            type: types.SELECT_USER,
-            user,
-        };
-        expect(actions.selectUser(user)).toEqual(expectedAction);
-    });
-
     it('Should swith a boolean to let us know fetching started', () => {
         const expectedAction = {
-            type: types.REQUEST_USERDATA,
+            type: types.REQUEST_COMPONENTDATA,
         };
-        expect(actions.requestUserData()).toEqual(expectedAction);
+        expect(actions.requestComponentData()).toEqual(expectedAction);
     });
 });
 
@@ -38,16 +29,16 @@ describe('async actions', () => {
     it('creates RECEIVE_USERDATA when fetching is done', () => {
         fetchMock.get(`http://pb-api.herokuapp.com/bars`, mockResult);
         const expectedActions = [
-            { type: types.REQUEST_USERDATA },
+            { type: types.REQUEST_COMPONENTDATA },
             {
-                type: types.RECEIVE_USERDATA,
+                type: types.RECEIVE_COMPONENTDATA,
                 userData: mockResult,
             },
         ];
 
         const store = mockStore({ userData: {} });
 
-        return store.dispatch(actions.fetchUserData(user)).then(data => {
+        return store.dispatch(actions.fetchComponentData()).then(data => {
             const dispatchedActions = store.getActions();
             expect(dispatchedActions).toEqual(expectedActions);
         });

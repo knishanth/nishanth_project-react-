@@ -4,36 +4,16 @@ import fetchMock from 'fetch-mock';
 import expect from 'expect';
 import * as types from '../constants/ActionTypes';
 import rootReducer, {
-    currentUser,
-    currentUserData,
-    userRepos,
+    currentUserData
 } from '../reducers';
 
 describe('reducer tests', () => {
-    it('should set the initial state', () => {
-        expect(
-            currentUser('', {
-                type: types.SELECT_USER,
-            })
-        ).toEqual();
-    });
-
-    it('should handle adding a user', () => {
-        const user = 'aderaaij';
-        expect(
-            currentUser('', {
-                type: types.SELECT_USER,
-                user,
-            })
-        ).toEqual(user);
-    });
-
-    it('should handle current userData', () => {
+     it('should handle current userData', () => {
         expect(
             currentUserData(
                 {},
                 {
-                    type: types.REQUEST_USERDATA,
+                    type: types.REQUEST_COMPONENTDATA,
                     isFetching: true,
                 }
             )
@@ -43,7 +23,7 @@ describe('reducer tests', () => {
             currentUserData(
                 {},
                 {
-                    type: types.RECEIVE_USERDATA,
+                    type: types.RECEIVE_COMPONENTDATA,
                     isFetching: false,
                 }
             )
@@ -53,7 +33,7 @@ describe('reducer tests', () => {
             currentUserData(
                 {},
                 {
-                    type: types.RECEIVE_USERDATA_ERROR,
+                    type: types.RECEIVE_COMPONENTDATA_ERROR,
                     isFetching: false,
                 }
             )

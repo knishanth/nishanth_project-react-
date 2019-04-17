@@ -1,50 +1,42 @@
 import {
-    SELECT_USER,
-    REQUEST_USERDATA,
-    RECEIVE_USERDATA,
-    RECEIVE_USERDATA_ERROR
+    REQUEST_COMPONENTDATA,
+    RECEIVE_COMPONENTDATA,
+    RECEIVE_COMPONENTDATA_ERROR
 } from './constants/ActionTypes';
 
-export function selectUser(user) {
+export function requestComponentData() {
     return {
-        type: SELECT_USER,
-        user,
+        type: REQUEST_COMPONENTDATA,
     };
 }
 
-export function requestUserData() {
+function receiveComponentData(json) {
     return {
-        type: REQUEST_USERDATA,
-    };
-}
-
-function receiveUserData(json) {
-    return {
-        type: RECEIVE_USERDATA,
+        type: RECEIVE_COMPONENTDATA,
         userData: json,
     };
 }
 
-function receiveUserDataErr(error) {
+function receiveComponentDataErr(error) {
     return {
-        type: RECEIVE_USERDATA_ERROR,
+        type: RECEIVE_COMPONENTDATA_ERROR,
         error,
     };
 }
 
-export function fetchUserData(user) {
+export function fetchData() {
     return dispatch => {
-        dispatch(requestUserData());
+        dispatch(requestComponentData());
         return fetch(`http://pb-api.herokuapp.com/bars`)
             .then(res => res.json())
-            .then(json => dispatch(receiveUserData(json)))
-            .catch(err => dispatch(receiveUserDataErr(err)));
+            .then(json => dispatch(receiveComponentData(json)))
+            .catch(err => dispatch(receiveComponentDataErr(err)));
     };
 }
 
 
-export function fetchUserAndRepos(user) {
+export function fetchComponentData() {
     return (dispatch, getState) => {
-        return dispatch(fetchUserData(user));
+        return dispatch(fetchData());
     };
 }

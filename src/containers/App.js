@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchUserAndRepos } from '../actions';
+import { fetchComponentData } from '../actions';
 
 import  '../css/styles.scss';
 import {ProgressBar} from '../components/progressBar';
@@ -23,7 +23,7 @@ class App extends Component {
     }
     
     componentDidMount(){
-        this.props.dispatch(fetchUserAndRepos('knishanth'));
+        this.props.dispatch(fetchComponentData());
     }
 	
 	componentWillReceiveProps(nextProps){
