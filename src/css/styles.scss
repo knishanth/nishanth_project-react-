@@ -2,38 +2,41 @@
 .container{
   width:80%;
   padding:20px 10% 0 10%;
-}
-.progress-bar-container{
-  width:75%;
-  height:20px;
-  border:1px solid #000;
-  text-align: center;
-  color:black;
-  overflow:hidden;
-}
-.progress-status{
-  width:20%;
-  height:100%;
-  background-color:#00FFFF;
-}
-.progress-status.red{
-   background-color:#FF0000;
-}
-.container select{
-   margin-left:5%;
+  
+  .progress-bar-container{
+	width:75%;
+	height:20px;
+	border:1px solid #000;
+	text-align: center;
+	color:black;
+	overflow:hidden;
+	position: relative;
+	 
+	 span {
+		position: absolute;
+		display: block;
+		width: 100%;
+		color: black;
+	 }
+
+	 .progress-status{
+		width:20%;
+		height:100%;
+		background-color:$primary-bar-color;
+	 }
+	 
+	 .excess-limit{
+		 background-color:$primary-bar-excessColor;
+	  }
+  }
+  
+  select{
+	margin-left:5%;
+  }
+  
+  input[type="button"]{
+		margin-left:5%;
+  }
 }
 
-.container input[type="button"]{
-   margin-left:5%;
-}
-.progress-bar-container {
-  position: relative;
-}
-
-.progress-bar-container span {
-    position: absolute;
-    display: block;
-    width: 100%;
-    color: black;
-}
 
